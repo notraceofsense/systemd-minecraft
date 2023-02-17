@@ -1,0 +1,43 @@
+# Core systemd service file that actually runs the servers
+# Requires mcrcon (https://github.com/Tiiffi/mcrcon)
+# TODO: Move RCON_PASSWORD into a config file instead of hardwiring it into the service script
+
+[Unit]
+Description=Minecraft Server %i
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/minecraft/%i
+
+User=minecraft
+Group=minecraft
+
+PrivateUsers=true
+PrivateDevices=true
+
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+NoNewPrivileges=true
+
+Environment="SHUTDOWN_DELAY=5" "POST_SHUTDOWN_DELAY=10" "RCON_PASSWORD=password"
+
+# EnvironmentFile=-/opt/minecraft/%i/server.conf
+
+ExecStart=/opt/minecraft/%i/run.sh
+
+ExecReload=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p ${RCON_PASSWORD} reload
+
+ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p ${RCON_PASSWORD} "say SERVER SHUTTING DOWN. Saving map..."
+ExecStop=/bin/sh -c '/bin/sleep ${SHUTDOWN_DELAY}'
+ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p ${RCON_PASSWORD} -w 5 save-all stop
+ExecStop=/bin/sh -c '/bin/sleep ${POST_SHUTDOWN_DELAY}'
+
+Restart=on-failure
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
