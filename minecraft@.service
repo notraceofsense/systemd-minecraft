@@ -1,6 +1,6 @@
 # Core systemd service file that actually runs the servers
 # Requires mcrcon (https://github.com/Tiiffi/mcrcon)
-# TODO: Move RCON_PASSWORD into a config file instead of hardwiring it into the service script
+# TODO: Move RCON_PASSWORD and the RCON port into a config file instead of hardwiring it into the service script
 
 [Unit]
 Description=Minecraft Server %i
