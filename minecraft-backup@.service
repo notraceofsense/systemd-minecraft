@@ -10,6 +10,7 @@ Type=oneshot
 
 # TODO: Unhardcode this (will be achieved when this whole service thing 
 # runs as a user instead of root)
+
 User=minecraft
 Group=minecraft
 WorkingDirectory=/opt/minecraft/%i
