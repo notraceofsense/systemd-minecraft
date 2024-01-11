@@ -1,0 +1,12 @@
+# Timer for starting servers
+# TODO: Put time in a config file
+
+[Unit]
+Description=Starts Minecraft server %i in the morning
+
+[Timer]
+Unit=minecraft-start@%i.service
+OnCalendar=*-*-* 10:00:00
+
+[Install]
+WantedBy=timers.target

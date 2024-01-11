@@ -1,0 +1,9 @@
+# service to start servers with the timers
+
+[Unit]
+Description=Start Minecraft Server %i
+
+[Service]
+Type=oneshot
+
+ExecStart=systemctl start minecraft@%i

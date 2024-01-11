@@ -1,0 +1,12 @@
+# Timer for stopping servers
+# TODO: Put time in a config file
+
+[Unit]
+Description=Shuts down Minecraft server %i at night
+
+[Timer]
+Unit=minecraft-stop@%i.service
+OnCalendar=*-*-* 01:00:00
+
+[Install]
+WantedBy=timers.target
