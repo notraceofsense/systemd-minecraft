@@ -23,21 +23,22 @@
   - Add `SHUTDOWN_DELAY=<some value>` (I recommend 30) for a delay between the server shutdown warning broadcast to players and the actual shutdown
 7. Change the file permissions for the `server.conf` file to read-only for the user *only* (`chmod 400 server.conf`)
 8. Ensure that the minecraft user and group own the everything in the folder (`chown -R minecraft:minecraft .`)
+
 You are now ready to run the server with systemd.
-Optional Step: Create a backup.sh script to backup the server (this will be run by the backup service later.)
-  For now, I'm leaving this one up as an exercise for the user.
+
+Optional Step: Create a backup.sh script to backup the server (this will be run by the backup service later.) For now, I'm leaving this one as an exercise for the user.
 ### Running the server
 #### Basic Operation
 (All of this is done with proper permissions for system-wide systemd administration (i.e. as `root`.)
-To start up the server:
-```systemctl start minecraft@<your-server>```
-To enable automatic startup on boot:
-```systemctl enable minecraft@<your-server>```
-To disable automatic startup on boot:
-```systemctl disable minecraft@<your-server>```
-To stop the server:
-```systemctl stop minecraft@<your-server>```
 
+- To start up the server:
+  ```systemctl start minecraft@<your-server>```
+- To enable automatic startup on boot:
+  ```systemctl enable minecraft@<your-server>```
+- To disable automatic startup on boot:
+  ```systemctl disable minecraft@<your-server>```
+- To stop the server:
+  ```systemctl stop minecraft@<your-server>```
 ## Caveats
 - This is still a heavily WIP side-project
 - When using any of the auto timers, please only run one server at a time with them (have not tried two, it may lead to interesting behavior)
