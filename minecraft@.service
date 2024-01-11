@@ -23,8 +23,6 @@ ProtectControlGroups=true
 
 NoNewPrivileges=true
 
-# Environment="SHUTDOWN_DELAY=5" "POST_SHUTDOWN_DELAY=10"
-
 EnvironmentFile=-/opt/minecraft/%i/server.conf
 
 ExecStart=/opt/minecraft/%i/run.sh
@@ -34,7 +32,6 @@ ExecReload=mcrcon -H 127.0.0.1 -P 25575 -p ${RCON_PASSWORD} reload
 ExecStop=mcrcon -H 127.0.0.1 -P 25575 -p ${RCON_PASSWORD} "say SERVER SHUTTING DOWN. Saving map..."
 ExecStop=/bin/sh -c '/bin/sleep ${SHUTDOWN_DELAY}'
 ExecStop=mcrcon -H 127.0.0.1 -P 25575 -p ${RCON_PASSWORD} -w 5 save-all stop
-# ExecStop=/bin/sh -c '/bin/sleep ${POST_SHUTDOWN_DELAY}'
 
 Restart=on-failure
 RestartSec=60s
