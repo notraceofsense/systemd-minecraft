@@ -1,4 +1,4 @@
-# Service to stop the servers with the timers
+# Service to stop the server with the timers
 
 [Unit]
 Description=Stop Minecraft Server %i
