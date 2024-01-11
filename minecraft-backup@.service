@@ -1,0 +1,30 @@
+# Backup service
+# For all intents and purposes this is about the same as running
+# a script using cron
+
+[Unit]
+Description=Backup Minecraft Server %i
+
+[Service]
+Type=oneshot
+
+# TODO: Unhardcode this (will be achieved when this whole service thing 
+# runs as a user instead of root)
+User=minecraft
+Group=minecraft
+WorkingDirectory=/opt/minecraft/%i
+
+PrivateUsers=true
+PrivateDevices=true
+
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+NoNewPrivileges=true
+
+# Like with starting up the server there are just too many ways for this
+# vary from server to server so...
+ExecStart=/opt/minecraft/%i/backup.sh
