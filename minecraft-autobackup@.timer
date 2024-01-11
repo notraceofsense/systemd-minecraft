@@ -1,0 +1,26 @@
+# Timer for triggering backups
+# TODO: Make backup time tunable on a by-server basis
+# which would probably require passing a config file to root
+# NoNewPrivileges might help but either way sounds like a recipe
+# for privilege escalation
+
+# Again, will likely be solved if/when we move all of this into
+# user service land
+
+[Unit]
+Description=Backs up Minecraft server %i
+
+[Timer]
+Unit=minecraft-backup@%i.service
+
+# Slight caveat here
+# Until we can tune this this would mean that all the servers would
+# be trying to back up at the same time
+# systemd does randomize timer firings
+# but still disk IO is bound to get busy
+# see above TODO
+OnCalendar=*-*-* 16:00:00
+
+[Install]
+WantedBy=timers.target
+Requisite=minecraft@%i.service
