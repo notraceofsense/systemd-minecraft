@@ -23,4 +23,3 @@ OnCalendar=*-*-* 16:00:00
 
 [Install]
 WantedBy=timers.target
-Requisite=minecraft@%i.service
