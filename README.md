@@ -24,7 +24,7 @@
 7. Change the file permissions for the `server.conf` file to read-only for the user *only* (`chmod 400 server.conf`)
 8. Ensure that the minecraft user and group own the everything in the folder (`chown -R minecraft:minecraft .`)
 You are now ready to run the server with systemd.
-Optional Step: Create a backup.sh script to backup the server (this will be run by the [[minecraft-backup@.service]] service later.)
+Optional Step: Create a backup.sh script to backup the server (this will be run by the backup service later.)
   For now, I'm leaving this one up as an exercise for the user.
 ### Running the server
 #### Basic Operation
