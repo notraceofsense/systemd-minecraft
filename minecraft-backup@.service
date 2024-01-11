@@ -4,6 +4,7 @@
 
 [Unit]
 Description=Backup Minecraft Server %i
+Requisite=minecraft@%i.service
 
 [Service]
 Type=oneshot
