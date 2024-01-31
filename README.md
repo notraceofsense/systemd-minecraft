@@ -47,4 +47,5 @@ Optional Step: Create a backup.sh script to backup the server (this will be run 
 - Make services run entirely under user mode instead of root, which allows us to...
   - Make a bunch of things tune-able through the `server.conf` file
   - Implement auto-restart functionality
+- Implement stdin/stdout to the console using systemd sockets, thus removing the need for mcrcon
 - Implement auto-installation (likely with `make`)
